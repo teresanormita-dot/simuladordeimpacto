@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simuladores de Impacto – MULTIPLÍCATE</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 60px 20px;
+      color: #111;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 250px;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      text-align: left;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      border: 3px solid #0057B8;
+      text-align: center;
+    }
+
+    .card h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #0057B8;
+    }
+
+    .card p.subtitle {
+      font-size: 15px;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      border: 2px solid #ddd;
+      text-align: center;
+    }
+
+    .result {
+      background: #eef4ff;
+      padding: 25px;
+      border-radius: 18px;
+      font-size: 16px;
+      min-height: 120px;
+    }
+
+    .impact-text {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .big-number {
+      font-size: 46px;
+      font-weight: bold;
+      color: #0057B8;
+      margin: 12px 0;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 28px;
+      background: #0057B8;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 40px;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background: #003e8a;
+    }
+
+    .footer-message {
+      text-align: center;
+      margin-top: 70px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #0057B8;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGO -->
+  <a href="https://www.bancodealimentosdesevilla.org/">
+   <img src="https://www.bancodealimentosdesevilla.org/wp-content/uploads/2023/02/Logotipo-fundacion-banco-de-alimentos-de-sevilla.png" alt="Banco de Alimentos de Sevilla" class="logo">
+ </a>
+
+  <div class="container">
+
+    <!-- SIMULADOR VOLUNTARIADO -->
+    <div class="card">
+      <h2>No sumes tu tiempo. Multiplícalo</h2>
+      <p class="subtitle">Convierte tu tiempo en impacto real.</p>
+
+      <label for="hours">Horas de voluntariado</label>
+      <input type="number" id="hours" min="1" placeholder="Ejemplo: 5" oninput="calcVolunteer()" />
+
+      <div class="result" id="volunteerResult">
+        Introduce tus horas y descubre cómo se multiplican.
+      </div>
+    </div>
+
+    <!-- SIMULADOR DONACIÓN -->
+    <div class="card">
+      <h2>No donas dinero. Lo conviertes en impacto.</h2>
+      <p class="subtitle">Tu aportación se transforma en comidas.</p>
+
+      <label for="euros">Cantidad donada (€)</label>
+      <input type="number" id="euros" min="1" placeholder="Ejemplo: 10" oninput="calcDonation()" />
+
+      <div class="result" id="donationResult">
+        Introduce tu donación y visualiza su impacto.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-message">
+    La Gran Recogida de Primavera empieza contigo. 5 y 6 de Junio de 2026. NO TE SUMES, MULTIPLÍCATE
+  </div>
+
+  <script>
+    const mealsPerHour = 25;
+    const mealsPerEuro = 4;
+
+    function calcVolunteer() {
+      const hours = document.getElementById('hours').value;
+      const result = document.getElementById('volunteerResult');
+
+      if (hours > 0) {
+        const meals = hours * mealsPerHour;
+        result.innerHTML = `
+          <div class="impact-text">TUS ${hours} HORAS</div>
+          <div class="impact-text">SE MULTIPLICAN EN</div>
+          <div class="big-number">${meals} COMIDAS</div>
+          <a href="https://www.bancodealimentosdesevilla.org/voluntariado-entidades/" class="cta-btn">PULSA AQUÍ PARA MULTIPLICARTE</a>
+        `;
+      } else {
+        result.innerHTML = 'Introduce tus horas y descubre cómo se multiplican.';
+      }
+    }
+
+    function calcDonation() {
+      const euros = document.getElementById('euros').value;
+      const result = document.getElementById('donationResult');
+
+      if (euros > 0) {
+        const meals = euros * mealsPerEuro;
+        result.innerHTML = `
+          <div class="impact-text">TUS ${euros} €</div>
+          <div class="impact-text">SE MULTIPLICAN EN</div>
+          <div class="big-number">${meals} COMIDAS</div>
+          <a href="https://supersolidario.com/" class="cta-btn">DONA AHORA Y MULTIPLÍCATE</a>
+        `;
+      } else {
+        result.innerHTML = 'Introduce tu donación y visualiza su impacto.';
+      }
+    }
+  </script>
+
+</body>
+</html>
